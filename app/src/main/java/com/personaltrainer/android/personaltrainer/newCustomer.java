@@ -2,11 +2,13 @@ package com.personaltrainer.android.personaltrainer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 import android.widget.ListView;
 /**
@@ -16,11 +18,13 @@ import android.widget.ListView;
 public class newCustomer extends Activity implements android.view.View.OnClickListener {
 
 
-
-    Button btnSave,btnDelete;
+    FrameLayout frameLayout;
+    Button btnSave, btnDelete;
     Button btnCancel;
     EditText Firstname;
     EditText Lastname;
+    Camera camera;
+    CameraView showCamera;
 
 
     private int UserID = 0;
@@ -29,6 +33,12 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_customer);
+
+        frameLayout = findViewById(R.id.frameLayout1);
+
+        camera = Camera.open();
+        showCamera = new CameraView(this, camera);
+        frameLayout.addView(showCamera);
 
         btnSave = findViewById(R.id.btnSave);
         btnDelete = findViewById(R.id.btnDelete);
@@ -52,6 +62,23 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
         Lastname.setText(user.lname);
 
     }
+
+    Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+
+        }
+    };
+
+    public void captureImage(View v) {
+        if (camera != null) {
+            camera.takePicture(null, null, mPictureCallback);
+        }
+    }
+
+
+
+
     public void onClick(View view) {
         if (view == findViewById(R.id.btnSave)){
             UserRepo repo = new UserRepo(this);
@@ -69,9 +96,12 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
                 Intent intent = new Intent(this,Login_Screen.class);
                 startActivity(intent);
             }else{
-
+                btnSave.setText("Update");
                 repo.update(user);
+
                 Toast.makeText(this,"User Record updated",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this,listOfCustomers.class);
+                startActivity(intent);
             }
         }else if (view== findViewById(R.id.btnDelete)){
             UserRepo repo = new UserRepo(this);
@@ -80,12 +110,13 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
             finish();
 
         } else if(view == findViewById(R.id.cancel)) {
-            Intent intent = new Intent(this,listOfCustomers.class);
+            Intent intent = new Intent(this,Login_Screen.class);
             startActivity(intent);
         }
 
 
     }
+
 
 }
 

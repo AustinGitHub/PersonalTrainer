@@ -31,13 +31,16 @@ public class listOfCustomers extends ListActivity implements android.view.View.O
 
     @Override
     public void onClick(View view) {
-        if (view== findViewById(R.id.btnAdd)){
+        if (view == findViewById(R.id.btnAdd)) {
 
-            Intent intent = new Intent(this,newCustomer.class);
-            intent.putExtra("UserID",0);
+            Intent intent = new Intent(this, newCustomer.class);
+            intent.putExtra("UserID", 0);
             startActivity(intent);
 
-        }else {
+        }
+    }
+     public void show(View view) {
+        if(view == findViewById(R.id.btnGetAll)){
 
             UserRepo repo = new UserRepo(this);
 
@@ -74,7 +77,7 @@ public class listOfCustomers extends ListActivity implements android.view.View.O
         btnGetAll = (Button) findViewById(R.id.btnGetAll);
         btnGetAll.setOnClickListener(this);
 
-
+        show(btnGetAll);
 
     }
 

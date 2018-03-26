@@ -14,7 +14,7 @@
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+<!--Marked add and show all buttons as gone because I don't need them to be shown. -->
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
@@ -23,6 +23,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginEnd="8dp"
+
+        android:visibility="gone"
         android:layout_marginTop="8dp"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +39,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="88dp"
+        android:visibility="gone"
         android:text="Show All Customers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
