@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Personal Trainer</string>
+    <string name="loginFail">Your Username or Password is invalid</string>
+    <string name="loginSuccess">Your login was successful</string>
+    <string name="username">Enter your username.</string>
+    <string name="password">Enter your password. </string>
+
+
+    <string name="fName">First Name</string>
+    <string name="lName">Last Name</string>
+    <string name="city"> City</string>
+    <string name="state">State</string>
+    <string name="phoneNumber">Phone Number</string>
+</resources>
