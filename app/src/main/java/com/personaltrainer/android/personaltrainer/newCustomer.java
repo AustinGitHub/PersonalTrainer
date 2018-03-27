@@ -88,15 +88,14 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
 //    }
 
 
-
-
     public void onClick(View view) {
+
         if (view == findViewById(R.id.btnSave)){
             UserRepo repo = new UserRepo(this);
             UserInfo user = new UserInfo();
             user.lname=Lastname.getText().toString();
             user.name=Firstname.getText().toString();
-            user.Phonenumber=Integer.parseInt(EditPhonenumber.getText().toString());
+            user.Phonenumber=Integer.parseInt(EditPhonenumber.getText().toString(),10);
             user.City=City.getText().toString();
             user.State=State.getText().toString();
             user.user_ID=UserID;
