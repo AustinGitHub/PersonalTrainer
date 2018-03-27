@@ -16,7 +16,7 @@ import static android.content.ContentValues.TAG;
 public class Login_Screen extends Activity {
     private Button addCustomer;
     private Button editCustomer;
-    private ListView ListView;
+    private Button logOut;
 
     private static final String TAG = "login screen";
     @Override
@@ -27,7 +27,7 @@ public class Login_Screen extends Activity {
 
         addCustomer = findViewById(R.id.addCustomer);
         editCustomer = findViewById(R.id.EditCustomers);
-
+        logOut = findViewById(R.id.Logout);
 
         addCustomer.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -60,6 +60,15 @@ public class Login_Screen extends Activity {
 
             }
 
+        });
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentLogin = new Intent(Login_Screen.this,MainActivity.class);
+
+                Login_Screen.this.startActivity(intentLogin);
+            }
         });
 
     }

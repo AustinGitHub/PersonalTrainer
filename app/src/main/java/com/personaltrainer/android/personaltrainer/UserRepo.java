@@ -24,6 +24,9 @@ public class UserRepo {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(UserInfo.KEY_State,user.State);
+        values.put(UserInfo.KEY_Phonenumber,user.Phonenumber);
+        values.put(UserInfo.KEY_City,user.City);
         values.put(UserInfo.KEY_lname,user.lname);
         values.put(UserInfo.KEY_name, user.name);
 
@@ -47,8 +50,13 @@ public class UserRepo {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        values.put(UserInfo.KEY_State,user.State);
+        values.put(UserInfo.KEY_Phonenumber,user.Phonenumber);
+        values.put(UserInfo.KEY_City,user.City);
         values.put(UserInfo.KEY_lname,user.lname);
         values.put(UserInfo.KEY_name, user.name);
+
+
 
 
 
@@ -62,7 +70,10 @@ public class UserRepo {
         String selectQuery =  "SELECT  " +
                 UserInfo.KEY_ID + "," +
                 UserInfo.KEY_name + ","  +
-                UserInfo.KEY_lname +
+                UserInfo.KEY_lname + "," +
+                UserInfo.KEY_Phonenumber + "," +
+                UserInfo.KEY_City + "," +
+                UserInfo.KEY_State +
                 " FROM " + UserInfo.TABLE;
 
 
@@ -92,7 +103,10 @@ public class UserRepo {
         String selectQuery =  "SELECT  " +
                 UserInfo.KEY_ID + "," +
                 UserInfo.KEY_name + "," +
-                UserInfo.KEY_lname +
+                UserInfo.KEY_lname + "," +
+                UserInfo.KEY_Phonenumber + "," +
+                UserInfo.KEY_City + "," +
+                UserInfo.KEY_State +
                 " FROM " + UserInfo.TABLE
                 + " WHERE " +
                 UserInfo.KEY_ID + "=?";
@@ -107,6 +121,9 @@ public class UserRepo {
                 user.user_ID =cursor.getInt(cursor.getColumnIndex(UserInfo.KEY_ID));
                 user.name =cursor.getString(cursor.getColumnIndex(UserInfo.KEY_name));
                 user.lname  =cursor.getString(cursor.getColumnIndex(UserInfo.KEY_lname));
+                user.Phonenumber  =cursor.getInt(cursor.getColumnIndex(UserInfo.KEY_Phonenumber));
+                user.City  =cursor.getString(cursor.getColumnIndex(UserInfo.KEY_City));
+                user.State  =cursor.getString(cursor.getColumnIndex(UserInfo.KEY_State));
 
             } while (cursor.moveToNext());
         }

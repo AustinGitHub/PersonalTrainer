@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Personal Trainer</string>
     <string name="loginFail">Your Username or Password is invalid</string>
-    <string name="loginSuccess">Your login was successful</string>
+    <string name="loginSuccess">Your login was successful, jdoe is logged in</string>
     <string name="username">Enter your username.</string>
     <string name="password">Enter your password. </string>
 

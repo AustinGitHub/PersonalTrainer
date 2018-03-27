@@ -10,8 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-
-    private static final int DATABASE_VERSION = 8;
+    // Each time I make edits to the database, increase the version by one
+    private static final int DATABASE_VERSION = 12;
 
     private static final String DATABASE_NAME = "users.db";
 
@@ -26,7 +26,10 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_USER = "CREATE TABLE " + UserInfo.TABLE  + "("
                 + UserInfo.KEY_ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + UserInfo.KEY_name + " TEXT, "
-                + UserInfo.KEY_lname + " TEXT ) ";
+                + UserInfo.KEY_lname + " TEXT, "
+                + UserInfo.KEY_Phonenumber + " INTEGER, "
+                + UserInfo.KEY_State + " TEXT, "
+                + UserInfo.KEY_City + " TEXT )";
 
         db.execSQL(CREATE_TABLE_USER);
 

@@ -23,6 +23,9 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
     Button btnCancel;
     EditText Firstname;
     EditText Lastname;
+    EditText EditPhonenumber;
+    EditText City;
+    EditText State;
     Camera camera;
     CameraView showCamera;
 
@@ -34,11 +37,12 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_customer);
 
-        frameLayout = findViewById(R.id.frameLayout1);
-
-        camera = Camera.open();
-        showCamera = new CameraView(this, camera);
-        frameLayout.addView(showCamera);
+        // Code is commented for AVD usage
+//        frameLayout = findViewById(R.id.frameLayout1);
+//
+//        camera = Camera.open();
+//        showCamera = new CameraView(this, camera);
+//        frameLayout.addView(showCamera);
 
         btnSave = findViewById(R.id.btnSave);
         btnDelete = findViewById(R.id.btnDelete);
@@ -46,6 +50,9 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
 
         Firstname = findViewById(R.id.name);
         Lastname = findViewById(R.id.lname);
+        EditPhonenumber = findViewById(R.id.Phonenumber);
+        City = findViewById(R.id.City);
+        State = findViewById(R.id.State);
 
         btnSave.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
@@ -60,21 +67,25 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
 
         Firstname.setText(user.name);
         Lastname.setText(user.lname);
+        EditPhonenumber.setText(String.valueOf(user.Phonenumber));
+        City.setText(user.City);
+        State.setText(user.State);
 
     }
-
-    Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
-        @Override
-        public void onPictureTaken(byte[] data, Camera camera) {
-
-        }
-    };
-
-    public void captureImage(View v) {
-        if (camera != null) {
-            camera.takePicture(null, null, mPictureCallback);
-        }
-    }
+    // Code is commented for AVD usage
+//
+//    Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
+//        @Override
+//        public void onPictureTaken(byte[] data, Camera camera) {
+//
+//        }
+//    };
+//
+//    public void captureImage(View v) {
+//        if (camera != null) {
+//            camera.takePicture(null, null, mPictureCallback);
+//        }
+//    }
 
 
 
@@ -85,6 +96,9 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
             UserInfo user = new UserInfo();
             user.lname=Lastname.getText().toString();
             user.name=Firstname.getText().toString();
+            user.Phonenumber=Integer.parseInt(EditPhonenumber.getText().toString());
+            user.City=City.getText().toString();
+            user.State=State.getText().toString();
             user.user_ID=UserID;
 
 
@@ -107,7 +121,8 @@ public class newCustomer extends Activity implements android.view.View.OnClickLi
             UserRepo repo = new UserRepo(this);
             repo.delete(UserID);
             Toast.makeText(this, "User Record Deleted", Toast.LENGTH_SHORT);
-            finish();
+            Intent intent = new Intent(this,listOfCustomers.class);
+            startActivity(intent);
 
         } else if(view == findViewById(R.id.cancel)) {
             Intent intent = new Intent(this,Login_Screen.class);
