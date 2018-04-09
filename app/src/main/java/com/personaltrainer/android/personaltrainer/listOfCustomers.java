@@ -25,7 +25,7 @@ import static android.content.ContentValues.TAG;
 
 public class listOfCustomers extends ListActivity implements android.view.View.OnClickListener {
 
-    Button btnAdd,btnGetAll;
+    Button btnAdd,btnGetAll,GoBack;
     TextView UserID;
 
 
@@ -38,7 +38,15 @@ public class listOfCustomers extends ListActivity implements android.view.View.O
             startActivity(intent);
 
         }
+        if (view == findViewById(R.id.GoBack)) {
+
+            Intent intent = new Intent(this, Login_Screen.class);
+            startActivity(intent);
+
+        }
     }
+
+
      public void show(View view) {
         if(view == findViewById(R.id.btnGetAll)){
 
@@ -76,6 +84,9 @@ public class listOfCustomers extends ListActivity implements android.view.View.O
 
         btnGetAll = (Button) findViewById(R.id.btnGetAll);
         btnGetAll.setOnClickListener(this);
+
+        GoBack = (Button) findViewById(R.id.GoBack);
+        GoBack.setOnClickListener(this);
 
         show(btnGetAll);
 

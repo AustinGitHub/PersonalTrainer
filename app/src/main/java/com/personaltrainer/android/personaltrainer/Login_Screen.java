@@ -68,8 +68,11 @@ public class Login_Screen extends Activity {
                 Intent intentLogin = new Intent(Login_Screen.this,MainActivity.class);
 
                 Login_Screen.this.startActivity(intentLogin);
+                Toast.makeText(Login_Screen.this, R.string.loggingOff,
+                        Toast.LENGTH_SHORT).show();
             }
         });
+
 
     }
 
